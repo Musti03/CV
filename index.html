@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mustafa Sayin | Lebenslauf</title>
+  <style>
+    :root {
+      --bg-1: #071024;
+      --bg-2: #111a33;
+      --card: rgba(10, 20, 40, 0.84);
+      --border: #2a3653;
+      --text: #edf4ff;
+      --muted: #a7b7d6;
+      --accent: #22d3ee;
+      --accent-2: #f59e0b;
+      --tag: rgba(34, 211, 238, 0.1);
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.32);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Manrope", "Segoe UI", "Trebuchet MS", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(245, 158, 11, 0.12), transparent 34%),
+        radial-gradient(circle at 100% 8%, rgba(34, 211, 238, 0.14), transparent 30%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      line-height: 1.55;
+    }
+
+    .page {
+      width: min(1080px, 94vw);
+      margin: 26px auto 50px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(95deg, rgba(245, 158, 11, 0.1), transparent 40%, rgba(34, 211, 238, 0.12));
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 16px;
+    }
+
+    .top-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .language-switch {
+      display: inline-flex;
+      gap: 8px;
+      background: rgba(17, 26, 51, 0.72);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px;
+    }
+
+    .lang-btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 8px 14px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      color: #06243a;
+    }
+
+    .pdf-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .action-link {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.88rem;
+      padding: 8px 12px;
+      background: rgba(7, 16, 36, 0.74);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .action-link:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .name {
+      margin: 0;
+      font-size: clamp(2rem, 6.5vw, 2.9rem);
+      line-height: 1.06;
+      letter-spacing: 0.02em;
+    }
+
+    .role-line {
+      margin: 0;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+    }
+
+    .contact-line {
+      margin: 0;
+      color: var(--muted);
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+
+    .contact-line a,
+    .linkedin a,
+    .reference-list a {
+      color: #86e8ff;
+      text-decoration: none;
+    }
+
+    .linkedin {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      font-size: 1.15rem;
+      letter-spacing: 0.02em;
+      color: #dff3ff;
+    }
+
+    .summary {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .entry-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .entry {
+      border-left: 2px solid #304061;
+      padding-left: 12px;
+    }
+
+    .entry-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .entry-title {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.3;
+    }
+
+    .entry-location {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .entry-meta {
+      margin: 4px 0 2px;
+      color: #d9e5ff;
+      font-size: 0.94rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .entry-period {
+      color: var(--accent-2);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .entry-note {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .entry ul {
+      margin: 6px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .entry li {
+      margin: 3px 0;
+    }
+
+    .simple-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      display: grid;
+      gap: 6px;
+    }
+
+    .skills-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .skills-list li {
+      border: 1px solid #2f3f61;
+      background: var(--tag);
+      border-radius: 10px;
+      padding: 10px;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .skills-list strong {
+      color: #eaf1ff;
+    }
+
+    .reference-hint {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .reference-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .reference-list a {
+      display: block;
+      border: 1px solid #2f3f61;
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: rgba(7, 16, 36, 0.54);
+      transition: border-color 0.2s ease;
+    }
+
+    .reference-list a:hover {
+      border-color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      color: #8da3ca;
+      font-size: 0.86rem;
+      padding: 2px 0 8px;
+    }
+
+    @media (min-width: 860px) {
+      .layout {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 540px) {
+      .page {
+        width: min(1080px, 95vw);
+        margin-top: 14px;
+      }
+
+      .card {
+        padding: 16px;
+        border-radius: 13px;
+      }
+
+      .entry-meta {
+        display: block;
+      }
+
+      .entry-period {
+        display: block;
+        margin-top: 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="card hero">
+      <div class="hero-inner">
+        <div class="top-actions">
+          <div class="language-switch" role="group" aria-label="Language switcher">
+            <button type="button" class="lang-btn" data-lang="de">Deutsch</button>
+            <button type="button" class="lang-btn" data-lang="en">English</button>
+          </div>
+          <div class="pdf-links">
+            <a id="pdf-de" class="action-link" href="./CV_Mustafa_Deutsch.pdf" target="_blank" rel="noopener noreferrer"></a>
+            <a id="pdf-en" class="action-link" href="./CV_Mustafa_Sayin.pdf" target="_blank" rel="noopener noreferrer"></a>
+          </div>
+        </div>
+
+        <h1 class="name">Mustafa Sayin</h1>
+        <p id="role-line" class="role-line"></p>
+
+        <p class="contact-line">
+          <span>+49 17670189574</span>
+          <span>|</span>
+          <a href="mailto:m.sayin03@gmail.com">m.sayin03@gmail.com</a>
+          <span>|</span>
+          <span id="location-text"></span>
+        </p>
+
+        <p class="linkedin">
+          <a href="https://linkedin.com/in/mustafa-sayin" target="_blank" rel="noopener noreferrer">linkedin.com/in/mustafa-sayin</a>
+        </p>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="card full">
+        <h2 id="summary-title" class="section-title"></h2>
+        <p id="summary-text" class="summary"></p>
+      </section>
+
+      <section class="card">
+        <h2 id="education-title" class="section-title"></h2>
+        <div id="education-list" class="entry-list"></div>
+      </section>
+
+      <section class="card">
+        <h2 id="skills-title" class="section-title"></h2>
+        <ul id="skills-list" class="skills-list"></ul>
+      </section>
+
+      <section class="card full">
+        <h2 id="experience-title" class="section-title"></h2>
+        <div id="experience-list" class="entry-list"></div>
+      </section>
+
+      <section class="card">
+        <h2 id="projects-title" class="section-title"></h2>
+        <div id="projects-list" class="entry-list"></div>
+      </section>
+
+      <section class="card">
+        <h2 id="academic-title" class="section-title"></h2>
+        <div id="academic-list" class="entry-list"></div>
+      </section>
+
+      <section class="card">
+        <h2 id="certifications-title" class="section-title"></h2>
+        <ul id="certifications-list" class="simple-list"></ul>
+      </section>
+
+      <section class="card">
+        <h2 id="references-title" class="section-title"></h2>
+        <p id="references-hint" class="reference-hint"></p>
+        <ul id="references-list" class="reference-list"></ul>
+      </section>
+    </main>
+
+    <footer id="footer-text"></footer>
+  </div>
+
+  <script>
+    const cvData = {
+      de: {
+        pageTitle: "Mustafa Sayin | Lebenslauf",
+        roleLine: "Softwareentwicklung | Cloud | Backend",
+        location: "Karlsruhe, Deutschland",
+        downloadDe: "CV Deutsch (PDF)",
+        downloadEn: "CV Englisch (PDF)",
+        sectionTitles: {
+          summary: "Profil",
+          education: "Ausbildung",
+          experience: "Berufserfahrung",
+          projects: "Projekte",
+          academic: "Akademische Arbeiten",
+          certifications: "Zertifikate",
+          skills: "Kenntnisse",
+          references: "Referenzen"
+        },
+        summary: "Informatikstudent am Karlsruher Institut für Technologie (KIT) mit über 4 Jahren praktischer Erfahrung in Softwareentwicklung, Cloud-Entwicklung und Automatisierung. Erfahrung bei Siemens, IBM und EnBW in der Entwicklung skalierbarer Systeme, CI/CD-Pipelines und datengetriebener Lösungen. Fokus auf Backend-Entwicklung, verteilte Systeme und Cloud-native Architekturen.",
+        education: [
+          {
+            title: "Karlsruher Institut für Technologie (KIT)",
+            location: "Karlsruhe, Deutschland",
+            meta: "B.Sc. Informatik",
+            period: "seit Sep. 2019"
+          },
+          {
+            title: "Karl-von-Drais-Gymnasium",
+            location: "Mannheim, Deutschland",
+            meta: "Allgemeine Hochschulreife",
+            period: "2016 - 2019"
+          }
+        ],
+        experience: [
+          {
+            title: "EnBW Energie Baden-Württemberg",
+            location: "Karlsruhe, Deutschland",
+            meta: "Werkstudent Risikomanagement (IT und Datenanalyse)",
+            period: "Okt. 2024 - Apr. 2025",
+            bullets: [
+              "Automatisierung von IT-Risikoberichtsprozessen zur Reduktion manueller Aufwände",
+              "Entwicklung datengetriebener Workflows zur Erstellung konzernweiter Risikoberichte"
+            ]
+          },
+          {
+            title: "Siemens AG",
+            location: "Karlsruhe, Deutschland",
+            meta: "Werkstudent Cloud-Entwicklung",
+            period: "Apr. 2024 - Okt. 2024",
+            bullets: [
+              "Entwicklung und Implementierung von CI/CD-Pipelines mit GitLab CI/CD",
+              "Entwicklung von Node.js-Bibliotheken zur verteilten Kommunikation (NATS)",
+              "Mitarbeit an skalierbaren Cloud-Architekturen"
+            ]
+          },
+          {
+            title: "IBM",
+            location: "Böblingen, Deutschland",
+            meta: "Praktikant Softwareentwicklung",
+            period: "Apr. 2022 - Dez. 2023",
+            bullets: [
+              "Automatisierung von Entwicklungsprozessen mit GitHub Actions, Ansible und Shell-Scripting",
+              "Optimierung interner Tools und Deployment-Prozesse",
+              "Unterstützung bei der Integration KI-gestützter Lösungen in Entwicklungsabläufe"
+            ]
+          },
+          {
+            title: "Algebra Informatics GbR",
+            location: "Deutschland",
+            meta: "Mitgründer",
+            period: "Jan. 2022 - Dez. 2023",
+            bullets: [
+              "Entwicklung von Web- und Mobile-Anwendungen für reale Kundenprojekte",
+              "Entwicklung von Automatisierungslösungen für ein großes Dönerproduktionsunternehmen"
+            ]
+          },
+          {
+            title: "IBM",
+            location: "Frankfurt, Deutschland",
+            meta: "Praktikant Data Science und KI",
+            period: "Apr. 2022 - Sep. 2022",
+            bullets: [
+              "Entwicklung von KI-Demonstrationsanwendungen für Kunden im Bankensektor",
+              "Anwendung von Machine-Learning- und Datenanalyseverfahren auf reale Datensätze"
+            ]
+          },
+          {
+            title: "FZI Forschungszentrum Informatik",
+            location: "Karlsruhe, Deutschland",
+            meta: "Wissenschaftliche Hilfskraft",
+            period: "Jul. 2021 - Sep. 2021",
+            bullets: [
+              "Entwicklung von Prognosemodellen für die Nutzung von Ladesäulen",
+              "Einsatz von Python, Pandas, Docker, Prophet, InfluxDB und Plotly"
+            ]
+          },
+          {
+            title: "EnBW Energie Baden-Württemberg",
+            location: "Karlsruhe, Deutschland",
+            meta: "Werkstudent Softwareentwicklung",
+            period: "Okt. 2020 - März 2021",
+            bullets: [
+              "Implementierung von Unit-Tests in C#",
+              "Entwicklung von Frontend-Funktionalitäten mit Angular"
+            ]
+          }
+        ],
+        projects: [
+          {
+            title: "Timefy Application",
+            location: "",
+            meta: "Universitätsprojekt (Note: 1,3, Bestes Team von 5)",
+            period: "Apr. 2022 - Sep. 2022",
+            bullets: [
+              "Entwicklung einer mobilen Anwendung mit Kotlin und Jetpack Compose (MVVM)"
+            ]
+          },
+          {
+            title: "MyMathX Application",
+            location: "",
+            meta: "",
+            period: "Apr. 2020 - Jun. 2021",
+            bullets: [
+              "Entwicklung einer Lern-App mit Xamarin.Forms und C#"
+            ]
+          }
+        ],
+        academic: [
+          {
+            title: "Judging Expert Judgement in Cybersecurity",
+            location: "",
+            meta: "Proseminar (Note: 1,0) zu kognitiven Verzerrungen in der Cybersecurity-Risikobewertung",
+            period: "2025"
+          },
+          {
+            title: "Bachelorarbeit: Verifizierbare Prognoseverfahren für Cybersecurity-Risikoanalysen",
+            location: "",
+            meta: "Entwicklung eines strukturierten und überprüfbaren Prognoseansatzes zur Verbesserung von Cybersecurity-Risikobewertungen",
+            period: "2025 (laufend)"
+          }
+        ],
+        certifications: [
+          "Android App Development Certificate - arconsis IT-Solutions GmbH",
+          "Agiles Projektmanagement Zertifikat",
+          "Design Thinking Zertifikat"
+        ],
+        skills: [
+          {
+            label: "Programmiersprachen",
+            value: "Java, Python, TypeScript, C#"
+          },
+          {
+            label: "Frameworks und Tools",
+            value: "Angular, React Native, Docker, GitLab CI/CD, GitHub Actions"
+          },
+          {
+            label: "Cloud und DevOps",
+            value: "CI/CD, Verteilte Systeme, Automatisierung, Ansible"
+          },
+          {
+            label: "Daten und KI",
+            value: "Pandas, Prophet, InfluxDB"
+          },
+          {
+            label: "Sprachen",
+            value: "Deutsch (Muttersprache), Türkisch (Muttersprache), Englisch (fließend)"
+          }
+        ],
+        referencesHint: "Ersetze diese Platzhalter durch deine eigenen Referenzseiten.",
+        references: [
+          {
+            label: "Mein Startup",
+            href: "https://algebra-informatics.com"
+          },
+          {
+            label: "Meine Projekt",
+            href: "https://id-metallbau.de"
+          }
+        ],
+        footer: "Copyright 2026 Mustafa Sayin"
+      },
+      en: {
+        pageTitle: "Mustafa Sayin | Resume",
+        roleLine: "Software Engineering | Cloud | Backend",
+        location: "Karlsruhe, Germany",
+        downloadDe: "CV German (PDF)",
+        downloadEn: "CV English (PDF)",
+        sectionTitles: {
+          summary: "Professional Summary",
+          education: "Education",
+          experience: "Experience",
+          projects: "Projects",
+          academic: "Academic Work",
+          certifications: "Certifications",
+          skills: "Skills",
+          references: "References"
+        },
+        summary: "Computer Science student at Karlsruhe Institute of Technology (KIT) with 4+ years of experience in software engineering, cloud development, and automation. Experience at Siemens, IBM, and EnBW building scalable systems, CI/CD pipelines, and data-driven solutions. Focused on backend engineering, distributed systems, and cloud-native architectures.",
+        education: [
+          {
+            title: "Karlsruhe Institute of Technology (KIT)",
+            location: "Karlsruhe, Germany",
+            meta: "B.Sc. Computer Science",
+            period: "since Sep. 2019"
+          },
+          {
+            title: "Karl-von-Drais-Gymnasium",
+            location: "Mannheim, Germany",
+            meta: "University Entrance Diploma",
+            period: "2016 - 2019"
+          }
+        ],
+        experience: [
+          {
+            title: "EnBW Energie Baden-Württemberg",
+            location: "Karlsruhe, Germany",
+            meta: "Working Student Risk Management (IT and Data Analysis)",
+            period: "Oct. 2024 - Apr. 2025",
+            bullets: [
+              "Automated IT risk reporting processes, reducing manual effort",
+              "Built data-driven workflows for generating group-level risk reports"
+            ]
+          },
+          {
+            title: "Siemens AG",
+            location: "Karlsruhe, Germany",
+            meta: "Working Student Cloud Developer",
+            period: "Apr. 2024 - Oct. 2024",
+            bullets: [
+              "Designed and implemented CI/CD pipelines using GitLab CI/CD",
+              "Developed Node.js libraries using NATS for distributed communication",
+              "Contributed to scalable cloud architectures"
+            ]
+          },
+          {
+            title: "IBM",
+            location: "Böblingen, Germany",
+            meta: "Software Developer Intern",
+            period: "Apr. 2022 - Dec. 2023",
+            bullets: [
+              "Automated workflows using GitHub Actions, Ansible, and shell scripting",
+              "Improved internal tooling and deployment processes",
+              "Supported integration of AI-driven solutions into development workflows"
+            ]
+          },
+          {
+            title: "Algebra Informatics GbR",
+            location: "Germany",
+            meta: "Co-Founder",
+            period: "Jan. 2022 - Dec. 2023",
+            bullets: [
+              "Built web and mobile applications for real-world clients",
+              "Developed automation software for a large-scale döner production company (one of the largest in Germany)"
+            ]
+          },
+          {
+            title: "IBM",
+            location: "Frankfurt, Germany",
+            meta: "Data Science and AI Consultant Intern",
+            period: "Apr. 2022 - Sep. 2022",
+            bullets: [
+              "Developed AI-based demo applications for banking clients",
+              "Applied machine learning and data processing techniques on real-world datasets"
+            ]
+          },
+          {
+            title: "FZI Forschungszentrum Informatik",
+            location: "Karlsruhe, Germany",
+            meta: "Working Student Research Assistant",
+            period: "Jul. 2021 - Sep. 2021",
+            bullets: [
+              "Built predictive models for electric charging station usage",
+              "Used Python, Pandas, Docker, Prophet, InfluxDB, and Plotly"
+            ]
+          },
+          {
+            title: "EnBW Energie Baden-Württemberg",
+            location: "Karlsruhe, Germany",
+            meta: "Working Student Software Developer",
+            period: "Oct. 2020 - Mar. 2021",
+            bullets: [
+              "Implemented unit tests using C#",
+              "Developed frontend features using Angular"
+            ]
+          }
+        ],
+        projects: [
+          {
+            title: "Timefy Application",
+            location: "",
+            meta: "University Project (Grade: 1.3, Best Team out of 5)",
+            period: "Apr. 2022 - Sep. 2022",
+            bullets: [
+              "Developed a mobile application using Kotlin and Jetpack Compose (MVVM)"
+            ]
+          },
+          {
+            title: "MyMathX Application",
+            location: "",
+            meta: "",
+            period: "Apr. 2020 - Jun. 2021",
+            bullets: [
+              "Built an educational app using Xamarin.Forms and C#"
+            ]
+          }
+        ],
+        academic: [
+          {
+            title: "Judging Expert Judgement in Cybersecurity",
+            location: "",
+            meta: "Proseminar (Grade: 1.0) on cognitive biases in cybersecurity risk assessment",
+            period: "2025"
+          }
+        ],
+        certifications: [
+          "Android App Development Certificate - arconsis IT-Solutions GmbH",
+          "Agile Project Management Certificate",
+          "Design Thinking Certificate"
+        ],
+        skills: [
+          {
+            label: "Programming",
+            value: "Java, Python, TypeScript, C#"
+          },
+          {
+            label: "Frameworks and Tools",
+            value: "Angular, React Native, Docker, GitLab CI/CD, GitHub Actions"
+          },
+          {
+            label: "Cloud and DevOps",
+            value: "CI/CD, Distributed Systems, Automation, Ansible"
+          },
+          {
+            label: "Data and AI",
+            value: "Pandas, Prophet, InfluxDB"
+          },
+          {
+            label: "Languages",
+            value: "German (native), Turkish (native), English (fluent)"
+          }
+        ],
+        referencesHint: "Replace these placeholders with your own reference pages.",
+        references: [
+          {
+            label: "Startup",
+            href: "https://algebra-informatics.com"
+          },
+          {
+            label: "My Project",
+            href: "https://id-metallbau.de"
+          }
+        ],
+        footer: "Copyright 2026 Mustafa Sayin"
+      }
+    };
+
+    const sectionTitleNodes = {
+      summary: document.getElementById("summary-title"),
+      education: document.getElementById("education-title"),
+      experience: document.getElementById("experience-title"),
+      projects: document.getElementById("projects-title"),
+      academic: document.getElementById("academic-title"),
+      certifications: document.getElementById("certifications-title"),
+      skills: document.getElementById("skills-title"),
+      references: document.getElementById("references-title")
+    };
+
+    function renderEntries(containerId, items) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = "";
+
+      items.forEach((item) => {
+        const article = document.createElement("article");
+        article.className = "entry";
+
+        const head = document.createElement("div");
+        head.className = "entry-head";
+
+        const title = document.createElement("h3");
+        title.className = "entry-title";
+        title.textContent = item.title;
+
+        head.append(title);
+
+        if (item.location) {
+          const location = document.createElement("span");
+          location.className = "entry-location";
+          location.textContent = item.location;
+          head.append(location);
+        }
+
+        article.append(head);
+
+        if (item.meta || item.period) {
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+
+          if (item.meta) {
+            const metaText = document.createElement("span");
+            metaText.textContent = item.meta;
+            meta.append(metaText);
+          }
+
+          if (item.period) {
+            const period = document.createElement("span");
+            period.className = "entry-period";
+            period.textContent = item.period;
+            meta.append(period);
+          }
+
+          article.append(meta);
+        }
+
+        if (item.note) {
+          const note = document.createElement("p");
+          note.className = "entry-note";
+          note.textContent = item.note;
+          article.append(note);
+        }
+
+        if (Array.isArray(item.bullets) && item.bullets.length > 0) {
+          const bulletList = document.createElement("ul");
+          item.bullets.forEach((bullet) => {
+            const li = document.createElement("li");
+            li.textContent = bullet;
+            bulletList.append(li);
+          });
+          article.append(bulletList);
+        }
+
+        container.append(article);
+      });
+    }
+
+    function renderSimpleList(containerId, items) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = "";
+      items.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        container.append(li);
+      });
+    }
+
+    function renderSkills(items) {
+      const container = document.getElementById("skills-list");
+      container.innerHTML = "";
+
+      items.forEach((item) => {
+        const li = document.createElement("li");
+        const label = document.createElement("strong");
+        label.textContent = `${item.label}:`;
+        li.append(label, document.createTextNode(` ${item.value}`));
+        container.append(li);
+      });
+    }
+
+    function renderReferences(items) {
+      const container = document.getElementById("references-list");
+      container.innerHTML = "";
+
+      items.forEach((item) => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = item.href;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.textContent = item.label;
+        li.append(a);
+        container.append(li);
+      });
+    }
+
+    function setLanguage(language) {
+      const lang = cvData[language] ? language : "de";
+      const content = cvData[lang];
+
+      document.documentElement.lang = lang;
+      document.title = content.pageTitle;
+
+      document.getElementById("role-line").textContent = content.roleLine;
+      document.getElementById("location-text").textContent = content.location;
+      document.getElementById("summary-text").textContent = content.summary;
+      document.getElementById("references-hint").textContent = content.referencesHint;
+      document.getElementById("pdf-de").textContent = content.downloadDe;
+      document.getElementById("pdf-en").textContent = content.downloadEn;
+      document.getElementById("footer-text").textContent = content.footer;
+
+      Object.entries(content.sectionTitles).forEach(([key, value]) => {
+        sectionTitleNodes[key].textContent = value;
+      });
+
+      renderEntries("education-list", content.education);
+      renderEntries("experience-list", content.experience);
+      renderEntries("projects-list", content.projects);
+      renderEntries("academic-list", content.academic);
+      renderSimpleList("certifications-list", content.certifications);
+      renderSkills(content.skills);
+      renderReferences(content.references);
+
+      document.querySelectorAll(".lang-btn").forEach((button) => {
+        const active = button.dataset.lang === lang;
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+
+      localStorage.setItem("cv-language", lang);
+    }
+
+    document.querySelectorAll(".lang-btn").forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.dataset.lang));
+    });
+
+    setLanguage(localStorage.getItem("cv-language") || "de");
+  </script>
+</body>
+</html>
+
